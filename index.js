@@ -1,5 +1,45 @@
 function hasTargetSum(array, target) {
   // Write your algorithm here
+
+  // Sort the array
+  const sortedArray = array.sort(function(a, b) {
+    return a - b;
+  });
+
+  // Loop through every index
+  for (let i = 0; i < sortedArray.length; i++)
+  {
+    // Set the start of the binary search
+    let start = 0;
+
+    // Set the end of the binary search
+    let end = sortedArray.length;
+
+    // Calculate the complement to search for 
+    let complement = target - sortedArray[i];
+  
+    debugger
+    // Loop through the array elminating the parts that do not contain the complement
+    while (start <= end) {
+
+      let mid = Math.floor((start + end) / 2);
+        
+      if (sortedArray[mid] === complement ) 
+      {
+        if(mid != i)
+        {
+          return true;
+        }
+      }
+
+      if (sortedArray[mid] < complement) {
+        start = mid + 1;
+      } else {
+        end = mid - 1;
+      }
+    }
+  }
+  return false;
 }
 
 /* 
